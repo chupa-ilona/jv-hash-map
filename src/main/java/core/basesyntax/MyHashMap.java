@@ -1,8 +1,9 @@
 package core.basesyntax;
+
 import java.util.Objects;
 
-public class MyHashMap<K, V> implements MyMap<K, V>{
-
+public class MyHashMap<K, V> implements MyMap<K, V> {
+    private static final int RESIZE_MULTIPLIER = 2;
     private static final int DEFAULT_CAPACITY = 16;
     private static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
@@ -112,7 +113,7 @@ public class MyHashMap<K, V> implements MyMap<K, V>{
     }
 
     private void resize() {
-        int newCapacity = capacity * 2;
+        int newCapacity = capacity * RESIZE_MULTIPLIER;
         Node<K, V>[] oldTable = table;
         table = new Node[newCapacity];
         capacity = newCapacity;
