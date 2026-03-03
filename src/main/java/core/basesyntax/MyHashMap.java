@@ -11,7 +11,7 @@ public class MyHashMap<K, V> implements MyMap<K, V>{
     private int capacity;
     private final float loadFactor;
 
-    private static class Node<K, V> {
+    static class Node<K, V> {
         private K key;
         private V value;
         private Node<K, V> next;
