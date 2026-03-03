@@ -1,29 +1,48 @@
 package core.basesyntax;
-
-
 import java.util.Objects;
 
 public class MyHashMap<K, V> implements MyMap<K, V>{
 
-    // ---------- Constants ----------
     private static final int DEFAULT_CAPACITY = 16;
     private static final float DEFAULT_LOAD_FACTOR = 0.75f;
 
-    // ---------- Fields ----------
-    private Node<K, V>[] table;
+    private Node<K, V> [] table;
     private int size;
     private int capacity;
     private final float loadFactor;
 
-    // ---------- Node (Entry) ----------
     private static class Node<K, V> {
-        K key;
-        V value;
-        Node<K, V> next;
+        private K key;
+        private V value;
+        private Node<K, V> next;
 
         Node(K key, V value) {
             this.key = key;
             this.value = value;
+        }
+
+        public K getKey() {
+            return key;
+        }
+
+        public void setKey(K key) {
+            this.key = key;
+        }
+
+        public V getValue() {
+            return value;
+        }
+
+        public void setValue(V value) {
+            this.value = value;
+        }
+
+        public Node<K, V> getNext() {
+            return next;
+        }
+
+        public void setNext(Node<K, V> next) {
+            this.next = next;
         }
     }
 
@@ -88,7 +107,6 @@ public class MyHashMap<K, V> implements MyMap<K, V>{
         if (key == null) {
             return 0;
         }
-
         int hash = key.hashCode();
         return Math.abs(hash) % capacity;
     }
@@ -96,11 +114,9 @@ public class MyHashMap<K, V> implements MyMap<K, V>{
     private void resize() {
         int newCapacity = capacity * 2;
         Node<K, V>[] oldTable = table;
-
         table = new Node[newCapacity];
         capacity = newCapacity;
         size = 0;
-
         for (Node<K, V> node : oldTable) {
             while (node != null) {
                 put(node.key, node.value);
