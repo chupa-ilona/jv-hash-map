@@ -12,8 +12,6 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     private int capacity;
     private final float loadFactor;
 
-
-
     public MyHashMap() {
         this.capacity = DEFAULT_CAPACITY;
         this.loadFactor = DEFAULT_LOAD_FACTOR;
