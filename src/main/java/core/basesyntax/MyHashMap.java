@@ -113,7 +113,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     }
 
     private void resize() {
-        Node<K, V>[] oldTable = table;
+        final Node<K, V>[] oldTable = table;
         int newCapacity = capacity * RESIZE_MULTIPLIER;
         table = new Node[newCapacity];
         capacity = newCapacity;
